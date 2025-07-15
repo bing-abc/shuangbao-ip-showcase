@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>霜宝 · 冰雪丝路创艺关东</title>
+  <meta name="description" content="冰雪文化赋能下的东北文旅新图景 - 吉林省第二届研究生'美丽中国'创新设计大赛参赛作品" />
+  <meta name="keywords" content="霜宝,冰雪丝路,创艺关东,冰雪文化,东北文旅,IP形象,吉林,长白山,雾凇" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+  <style>
+    :root {
+      --primary-color: #1e90ff;
+      --secondary-color: #ff6b6b;
+      --accent-color: #e8f4ff;
+      --text-color: #2c3e50;
+      --light-text: #ffffff;
+      --dark-bg: #1a2a3a;
+      --border-radius: 15px;
+      --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Serif SC', serif;
+      background: url('images/background-snow.jpg') no-repeat center center fixed, var(--accent-color);
+      background-size: cover;
+      background-blend-mode: overlay;
+      color: var(--text-color);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* 导航栏样式 */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.3); /* 将不透明度从0.95降低到0.7，使导航栏更加透明 */
+      padding: 1rem 2rem;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+    }
+
+    .nav.scrolled {
+      padding: 0.5rem 2rem;
+      background: rgba(255, 255, 255, 0.85); /* 滚动后的导航栏也相应调整为半透明 */
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo img {
+      height: 40px;
+      transition: var(--transition);
+    }
+
+    .nav.scrolled .logo img {
+      height: 35px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: bold;
+      transition: var(--transition);
+      position: relative;
+      padding: 0.5rem 0;
+    }
+
+    .nav-links a:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover:after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    /* 通用部分样式 */
+    section {
+      min-height: 100vh;
+      padding: 100px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: var(--primary-color);
+      text-align: center;
+      position: relative;
+    }
+
+    h2:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--primary-color);
+    }
+
+    /* 英雄区域样式 */
+    /* .hero {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(232, 244, 255, 0.8));
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    } */
+
+    /* 英雄区域样式 */
+    .hero {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(232, 244, 255, 0.8)), url('china.jpg') no-repeat center bottom -360px;
+    background-size: 92%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+    }
+
+    .snowflakes {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      color: var(--text-color);
+    }
+
+    .mascot-container {
+      position: relative;
+      width: 350px;
+      height: 350px;
+      margin: 2rem auto;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .mascot-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: var(--transition);
+      filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
+    }
+
+    .mascot-container:hover img {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .speech-bubble {
+      position: absolute;
+      top: -60px;
+      right: -20px;
+      background: white;
+      padding: 15px 20px;
+      border-radius: 20px;
+      box-shadow: var(--box-shadow);
+      display: none;
+      font-size: 1.1rem;
+      max-width: 250px;
+      text-align: left;
+    }
+
+    .speech-bubble:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 10px 10px 0;
+      border-style: solid;
+      border-color: white transparent transparent;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .cta-btn {
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 1.1rem;
+    }
+
+    .primary-btn {
+      background: var(--primary-color);
+      color: white;
+      box-shadow: 0 4px 15px rgba(30, 144, 255, 0.3);
+    }
+
+    .primary-btn:hover {
+      background: #0077e6;
+      transform: translateY(-3px);
+      box-shadow: 0 7px 20px rgba(30, 144, 255, 0.4);
+    }
+
+    .secondary-btn {
+      background: white;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+    }
+
+    .secondary-btn:hover {
+      background: var(--accent-color);
+      transform: translateY(-3px);
+    }
+
+    /* 冰雪胜地样式 */
+    .attractions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      max-width: 1200px;
+      margin: 2.5rem auto;
+      padding: 0 20px;
+      width: 100%;
+    }
+
+    .attraction-card {
+      background: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+      cursor: pointer;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .attraction-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .attraction-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .attraction-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .attraction-info {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .attraction-info h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+      color: var(--primary-color);
+    }
+
+    .attraction-info p {
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+
+    .attraction-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .attraction-rating {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .attraction-rating span {
+      color: #ffa41b;
+    }
+
+    /* 互动体验样式 */
+    .interactive-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      max-width: 1200px;
+      width: 100%;
+      padding: 2rem;
+    }
+
+    .feature-box {
+      background: white;
+      padding: 2.5rem 2rem;
+      border-radius: var(--border-radius);
+      text-align: center;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .feature-box:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background: linear-gradient(135deg, var(--accent-color), #f0f8ff);
+      transition: var(--transition);
+      z-index: -1;
+    }
+
+    .feature-box:hover:before {
+      height: 100%;
+    }
+
+    .feature-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      transition: var(--transition);
+    }
+
+    .feature-box:hover .feature-icon {
+      transform: scale(1.2);
+    }
+
+    .feature-box h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-color);
+    }
+
+    .feature-box p {
+      color: #666;
+    }
+
+    /* 冰雪文化样式 */
+    .culture-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .culture-item {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+    }
+
+    .culture-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .culture-item h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary-color);
+      position: relative;
+      padding-bottom: 0.8rem;
+    }
+
+    .culture-item h3:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--primary-color);
+    }
+
+    .culture-item p {
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+
+    .culture-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .culture-grid-item {
+      background: var(--accent-color);
+      padding: 1.5rem;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .culture-grid-item h4 {
+      margin-bottom: 0.8rem;
+      color: var(--primary-color);
+    }
+
+    /* 文化融合样式 */
+    .integration-section {
+      background: linear-gradient(135deg, #e8f4ff, #fff);
+    }
+
+    /* 冰雪季活动样式 */
+    .season-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .season-card {
+      border: 1px solid #e0e0e0;
+      padding: 1.5rem;
+      border-radius: 10px;
+      transition: var(--transition);
+      background: white;
+    }
+
+    .season-card:hover {
+      border-color: var(--primary-color);
+      box-shadow: var(--box-shadow);
+    }
+
+    .season-card h4 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+
+    /* 旅游攻略样式 */
+    .travel-guide-section {
+      background: linear-gradient(135deg, #fff, #e8f4ff);
+    }
+
+    .guide-item {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+    }
+
+    .guide-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .guide-item h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    /* 图片画廊样式 */
+    .gallery-section {
+      background: linear-gradient(135deg, #e8f4ff, #fff);
+    }
+
+    .gallery-container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .swiper {
+      width: 100%;
+      padding-bottom: 50px;
+    }
+
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+      width: 300px;
+      height: 400px;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .swiper-slide:hover img {
+      transform: scale(1.05);
+    }
+
+    .swiper-pagination-bullet-active {
+      background: var(--primary-color);
+    }
+
+    /* 团队介绍样式 */
+    .team-section {
+      background: linear-gradient(135deg, #fff, #e8f4ff);
+    }
+
+    .team-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2.5rem;
+      max-width: 1200px;
+      width: 100%;
+      padding: 2rem;
+    }
+
+    .team-member {
+      background: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .team-member:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .team-member img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .team-info {
+      padding: 1.5rem;
+    }
+
+    .team-info h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+
+    .team-info p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .team-social {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .team-social a {
+      color: var(--primary-color);
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+
+    .team-social a:hover {
+      color: var(--secondary-color);
+      transform: translateY(-3px);
+    }
+
+    /* 页脚样式 */
+    footer {
+      background: var(--dark-bg);
+      color: var(--light-text);
+      padding: 4rem 0 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-content h3 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--light-text);
+    }
+
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .social-links span {
+      color: var(--light-text);
+      font-size: 0.9rem;
+    }
+
+    .social-links a {
+      color: var(--light-text);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      color: var(--primary-color);
+    }
+
+    .footer-nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .footer-nav a {
+      color: var(--light-text);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-nav a:hover {
+      color: var(--primary-color);
+    }
+
+    .copyright {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 1024px) {
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+      
+      .mascot-container {
+        width: 300px;
+        height: 300px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 1rem 0;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        gap: 0;
+      }
+      
+      .nav-links.active {
+        display: flex;
+      }
+      
+      .nav-links a {
+        padding: 1rem 2rem;
+        width: 100%;
+        text-align: center;
+      }
+      
+      .nav-links a:after {
+        display: none;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      
+      .subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .mascot-container {
+        width: 250px;
+        height: 250px;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .culture-item,
+      .guide-item {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      h2 {
+        font-size: 2rem;
+      }
+      
+      .mascot-container {
+        width: 200px;
+        height: 200px;
+      }
+      
+      .feature-box,
+      .culture-item,
+      .guide-item {
+        padding: 1.5rem 1rem;
+      }
+    }
+
+    /* 动画效果 */
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .float-animation {
+      animation: float 4s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" id="mainNav">
+    <div class="logo">
+      <img src="1.png" alt="霜宝Logo"> 霜宝
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">首页</a>
+      <a href="#attractions">冰雪胜地</a>
+      <a href="#activities">互动体验</a>
+      <a href="#about">冰雪文化</a>
+      <a href="#integration">文化融合</a>
+      <a href="#season">冰雪季</a>
+      <a href="#travel-guide">旅游攻略</a>
+    </div>
+    <div class="mobile-menu-btn" id="mobileMenuBtn">
+      ☰
+    </div>
+  </nav>
+
+  <section id="home" class="hero">
+    <div class="snowflakes" id="snowflakes"></div>
+    <div class="hero-content">
+      <h1 data-aos="fade-down">霜宝·冰雪丝路</h1>
+      <div class="mascot-container float-animation" data-aos="zoom-in">
+        <img src="1.png" alt="霜宝" id="mascot">
+        <div class="speech-bubble" id="speech"></div>
+        <div class="click-hint" id="clickHint" style="position: absolute; top: 20px; right: -20px; background: linear-gradient(135deg, var(--primary-color), #66b5ff); color: white; padding: 10px 18px; border-radius: 25px; font-size: 1rem; font-weight: bold; box-shadow: 0 5px 15px rgba(30,144,255,0.4); animation: pulse 2s infinite; transform: rotate(5deg); border: 2px solid white;">点我哦</div>
+      </div>
+      <p class="subtitle" data-aos="fade-up">冰雪文化赋能下的东北文旅新图景</p>
+      <p class="subtitle" data-aos="fade-up" style="font-style: italic; color: var(--primary-color);">以科技之力，让世界感知东北之美</p>
+      <div class="cta-buttons" data-aos="fade-up" data-aos-delay="200">
+        <a href="#attractions" class="cta-btn primary-btn">探索冰雪胜地</a>
+        <a href="#about" class="cta-btn secondary-btn">了解冰雪文化</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="attractions">
+    <h2 data-aos="fade-right">冰雪胜地</h2>
+    <div class="attractions">
+      <div class="attraction-card" data-aos="fade-up" onclick="window.open('http://wifi.changbaishan.gov.cn/jd/jdk/201703/t20170323_63277.html', '_blank')">
+        <img src="2.png" alt="长白山天池">
+        <div class="attraction-info">
+          <h3>长白山国际度假区</h3>
+          <p>冬天的长白山，雪期长、雪量大、雪质好，堪称中国的新雪乡，是北国大地上的一幅水墨画。拥有亚洲一流的滑雪场，温暖融心的雪域温泉，以及各种雪国运动体验。</p>
+          <div class="attraction-meta">
+            <div class="attraction-rating">
+              <span>★★★★★</span> 5.0
+            </div>
+            <div>吉林省白山市</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="attraction-card" data-aos="fade-up" data-aos-delay="100" onclick="window.open('https://ice.hrbicesnow.com/', '_blank')">
+        <img src="ice-wonderland.png" alt="冰雪大世界">
+        <div class="attraction-info">
+          <h3>哈尔滨冰雪大世界</h3>
+          <p>"冰城"哈尔滨的冰雪大世界是冬季最热门地方，冰雕原材料取自松花江，雕成各式各样栩栩如生的冰雕、巧夺天工的冰灯，其中1000米高的冰滑梯不可错过。</p>
+          <div class="attraction-meta">
+            <div class="attraction-rating">
+              <span>★★★★★</span> 5.0
+            </div>
+            <div>黑龙江省哈尔滨市</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="attraction-card" data-aos="fade-up" data-aos-delay="200" onclick="window.open('http://www.jlcity.gov.cn/wsbb/', '_blank')">
+        <img src="wusong.jpg" alt="雾凇岛">
+        <div class="attraction-info">
+          <h3>雾凇岛</h3>
+          <p>位于吉林省吉林市乌拉街镇松花江面上的小岛，是雾凇最为集中的地方，也是观赏和拍摄雾凇的最佳地。沿江的垂柳挂满了洁白晶莹的霜花，江风吹拂银丝闪烁，景色既野又美。</p>
+          <div class="attraction-meta">
+            <div class="attraction-rating">
+              <span>★★★★★</span> 5.0
+            </div>
+            <div>吉林省吉林市</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="attraction-card" data-aos="fade-up" data-aos-delay="300">
+        <img src="xuexiang.jpg" alt="雪乡">
+        <div class="attraction-info">
+          <h3>中国雪乡</h3>
+          <p>雪乡其实不是一个正式的称呼，它的学名叫双峰林场，位于黑龙江省海林市长汀镇。雪期长达7个月，雪量堪称中国之最。百余户居民区犹如一座相连的"雪屋"，房舍积雪可达1米厚，形状千姿百态。</p>
+          <div class="attraction-meta">
+            <div class="attraction-rating">
+              <span>★★★★★</span> 5.0
+            </div>
+            <div>黑龙江省海林市</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="attraction-card" data-aos="fade-up" data-aos-delay="400">
+        <img src="yabuli.jpg" alt="yabuli">
+        <div class="attraction-info">
+          <h3>亚布力滑雪场</h3>
+          <p>亚布力是黑龙江省尚志市的一个小镇，亚布力滑雪旅游度假区是国家4A级景区。是目前国内最大的滑雪场，拥有亚洲首屈一指的多等级雪道，以及全长2680米、落差540米、48个弯道的世界第一滑道。</p>
+          <div class="attraction-meta">
+            <div class="attraction-rating">
+              <span>★★★★★</span> 5.0
+            </div>
+            <div>黑龙江省尚志市</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="attraction-card" data-aos="fade-up" data-aos-delay="500">
+        <img src="yichun.jpg" alt="yichun">
+        <div class="attraction-info">
+          <h3>伊春冰雪景区</h3>
+          <p>有着中国林都、红松故乡、森林氧吧美誉的伊春市，冬天银装素裹、雪玉冰清。伊春大平台的雾淞、红星地质公园的石海、汤旺河的石林、大菁山上被雪覆盖的大风车，每一处都让人为之叫绝。</p>
+          <div class="attraction-meta">
+            <div class="attraction-rating">
+              <span>★★★★★</span> 5.0
+            </div>
+            <div>黑龙江省伊春市</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="activities">
+    <h2 data-aos="fade-right">互动体验</h2>
+    <div class="interactive-features">
+      <div class="feature-box" data-aos="zoom-in">
+        <div class="feature-icon">🎮</div>
+        <h3>冰雪换装</h3>
+        <p>为霜宝设计独特的冬季装扮，展示东北传统服饰与现代时尚的完美融合，让霜宝成为您专属的冰雪伙伴。</p>
+      </div>
+      <div class="feature-box" data-aos="zoom-in" data-aos-delay="100">
+        <div class="feature-icon">📸</div>
+        <h3>AR合影</h3>
+        <p>通过增强现实技术，与霜宝在各大冰雪景点创建独特的旅行回忆，分享到社交媒体即可参与抽奖活动。</p>
+      </div>
+      <div class="feature-box" data-aos="zoom-in" data-aos-delay="200">
+        <div class="feature-icon">🎯</div>
+        <h3>冰雪挑战</h3>
+        <p>参与互动游戏，完成霜宝设定的冰雪任务，赢取精美礼品和景区门票，体验冰雪运动的乐趣。</p>
+      </div>
+      <div class="feature-box" data-aos="zoom-in" data-aos-delay="300">
+        <div class="feature-icon">🎨</div>
+        <h3>冰雪创作</h3>
+        <p>参与线上冰雪艺术创作，优秀作品将有机会在线下冰雪节展出，让您的创意融入东北冰雪文化。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 data-aos="fade-right">冰雪文化</h2>
+    <div class="culture-content">
+      <div class="culture-item" data-aos="fade-up">
+        <h3>吉林冰雪文化历史</h3>
+        <p>吉林省冰雪文化源远流长，是中国北方民族在漫长的冬季生活中形成的独特文化现象。从古代的"冰嬉"到现代的冰雪旅游，吉林冰雪文化已经成为中国文化多样性的重要组成部分。</p>
+        <p>长白山作为吉林冰雪文化的发源地之一，不仅有着壮美的自然景观，更蕴含着丰富的满族萨满文化和冰雪习俗，是中国冰雪文化的重要代表。</p>
+        <div class="culture-grid">
+          <div class="culture-grid-item">
+            <h4>冰嬉</h4>
+            <p>古代宫廷冬季娱乐活动，包括冰上竞技、冰上杂技等</p>
+          </div>
+          <div class="culture-grid-item">
+            <h4>冰灯</h4>
+            <p>起源于渔民夜间捕鱼的照明工具，后发展为艺术形式</p>
+          </div>
+          <div class="culture-grid-item">
+            <h4>冬捕</h4>
+            <p>松花江、图们江等地区的传统冬季捕鱼活动</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="culture-item" data-aos="fade-up" data-aos-delay="100">
+        <h3>冰雪艺术</h3>
+        <p>吉林省的冰雪艺术以冰灯、冰雕、雪雕为代表，融合了传统工艺与现代审美。每年的哈尔滨冰雪大世界和吉林雾凇节都吸引着无数游客前来观赏这些晶莹剔透的艺术品。</p>
+        <p>冰雪艺术不仅是视觉的盛宴，更是吉林人民智慧的结晶，展示了人与自然和谐共处的美好愿景。近年来，冰雪艺术与现代科技相结合，通过灯光、音乐、投影等手段，创造出更加震撼的视觉体验。</p>
+      </div>
+      
+      <div class="culture-item" data-aos="fade-up" data-aos-delay="200">
+        <h3>冰雪运动</h3>
+        <p>随着2022年北京冬奥会的成功举办，冰雪运动在中国赢得了前所未有的发展机遇。吉林省作为中国重要的冰雪运动基地，拥有多个国际级滑雪场和冰上运动场馆。</p>
+        <p>从专业的高山滑雪到大众化的雪圈滑雪，从速度滑冰到冰球比赛，吉林省为冰雪运动爱好者提供了丰富多彩的选择，让更多人体验冰雪运动的乐趣。"三亿人参与冰雪运动"的目标正在逐步实现，冰雪运动已成为推动东北地区冬季经济发展的重要引擎。</p>
+      </div>
+      
+      <div class="culture-item" data-aos="fade-up" data-aos-delay="300">
+        <h3>冰雪美食</h3>
+        <p>吉林的冰雪文化还体现在独特的冬季美食上。东北铁锅炖、酸菜白肉、狗肉火锅等热气腾腾的菜肴，不仅能够抵御严寒，还承载着浓厚的地方特色和文化内涵。</p>
+        <p>此外，冰糖葫芦、冻梨、冻柿子等冰雪特色小吃，也是吉林冬季不可错过的美食体验，让游客在品尝美食的同时感受冰雪文化的魅力。东北人的热情好客在寒冷的冬季显得尤为珍贵，围炉而坐，品尝美食，分享故事，是东北冰雪文化中最温暖的部分。</p>
+      </div>
+    </div>
+  </section>
+  
+  <section id="integration" class="integration-section">
+    <h2 data-aos="fade-right">冰雪文化融合</h2>
+    <div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+      <div data-aos="fade-up" class="culture-item">
+        <h3>冰雪与民俗融合</h3>
+        <p>东北地区独特的民俗文化与冰雪元素相结合，形成了丰富多彩的冰雪民俗活动。从东北二人转到满族萨满祭祀，从农耕文化到渔猎文明，这些传统民俗在冰雪环境中焕发出新的生命力。</p>
+        <p>霜宝作为吉林冰雪文化IP形象，融入了东北传统民俗元素，成为连接传统与现代的文化使者，为游客带来沉浸式的冰雪民俗体验。通过数字技术和创意设计，霜宝将带领游客了解东北民俗文化的独特魅力。</p>
+      </div>
+      
+      <div data-aos="fade-up" data-aos-delay="100" class="culture-item">
+        <h3>冰雪与工业融合</h3>
+        <p>东北作为中国重要的工业基地，拥有丰富的工业遗产资源。通过将冰雪元素与工业遗址相结合，打造冰雪工业旅游路线，不仅能够保护和利用工业遗产，还能为游客提供独特的旅游体验。</p>
+        <p>在老厂房中举办冰雪艺术展，在废弃矿井打造冰雪探险乐园，这些创新的融合方式为东北工业转型升级提供了新思路。霜宝将带领游客探索东北工业文明与冰雪文化的碰撞，见证东北地区的历史变迁和未来发展。</p>
+      </div>
+      
+      <div data-aos="fade-up" data-aos-delay="200" class="culture-item">
+        <h3>冰雪与生态融合</h3>
+        <p>东北地区拥有丰富的森林、湿地、草原等生态资源，这些自然环境与冰雪相结合，形成了独特的冰雪生态景观。通过发展生态冰雪旅游，不仅能够保护自然环境，还能促进当地经济发展。</p>
+        <p>霜宝作为生态保护形象大使，倡导绿色冰雪旅游理念，引导游客在欣赏冰雪美景的同时，保护自然环境，实现人与自然的和谐共处。通过霜宝的引导，游客将了解东北地区的生态环境保护工作，参与到生态保护行动中来。</p>
+      </div>
+      
+      <div data-aos="fade-up" data-aos-delay="300" class="culture-item">
+        <h3>冰雪与科技融合</h3>
+        <p>现代科技与冰雪文化的融合，为东北冰雪旅游带来了新的发展机遇。虚拟现实、增强现实、人工智能等技术的应用，让游客能够以更加沉浸式的方式体验冰雪文化。</p>
+        <p>霜宝作为数字化冰雪文化IP，将通过线上线下结合的方式，为游客提供全方位的冰雪文化体验。从手机应用到景区互动装置，从社交媒体到实景演出，霜宝将成为连接游客与冰雪文化的重要桥梁。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="season" style="background: linear-gradient(135deg, #e8f4ff, #fff);">
+    <h2 data-aos="fade-right">冰雪季活动</h2>
+    <div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+      <div data-aos="fade-up" class="culture-item">
+        <h3>2023-2024冰雪季活动安排</h3>
+        <p>吉林省冰雪季从每年11月持续到次年3月，为期5个月，是体验东北冰雪文化的最佳时机。霜宝将全程参与冰雪季活动，为游客带来丰富多彩的冰雪体验。</p>
+        <div class="season-grid">
+          <div class="season-card">
+            <h4>11月 - 冰雪季预热</h4>
+            <p>- 霜宝形象全球发布会</p>
+            <p>- 冰雪文化创意设计大赛</p>
+            <p>- "遇见霜宝"线上互动活动</p>
+          </div>
+          <div class="season-card">
+            <h4>12月 - 冰雪季开幕</h4>
+            <p>- 长白山滑雪场开板仪式</p>
+            <p>- 吉林省冰雪文化节开幕式</p>
+            <p>- 霜宝冰雪嘉年华启动</p>
+          </div>
+          <div class="season-card">
+            <h4>1月 - 冰雪艺术月</h4>
+            <p>- 国际冰雕大赛</p>
+            <p>- 雾凇岛摄影节</p>
+            <p>- 民间冰灯展览</p>
+            <p>- 霜宝冰雪艺术展</p>
+          </div>
+          <div class="season-card">
+            <h4>2月 - 冰雪运动月</h4>
+            <p>- 吉林省青少年滑雪比赛</p>
+            <p>- 冰上龙舟大赛</p>
+            <p>- 全民冰雪健身活动</p>
+            <p>- 霜宝冰雪运动会</p>
+          </div>
+          <div class="season-card">
+            <h4>3月 - 冰雪文化月</h4>
+            <p>- 东北民俗文化展</p>
+            <p>- 冰雪文化学术研讨会</p>
+            <p>- 霜宝冰雪文化巡展</p>
+            <p>- 冰雪季闭幕式</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="travel-guide" class="travel-guide-section">
+    <h2 data-aos="fade-right">冰雪旅游攻略</h2>
+    <div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+      <div data-aos="fade-up" class="guide-item">
+        <h3>最佳旅游时间</h3>
+        <p>吉林省冰雪旅游的最佳时间为每年的12月至次年3月。其中，1月至2月是观赏雾凇的黄金期，也是各大滑雪场雪质最佳的时期。</p>
+        <p>不同景点的最佳游览时间：</p>
+        <ul style="margin-left: 20px; margin-top: 10px;">
+          <li>长白山滑雪场：12月中旬至次年3月初</li>
+          <li>雾凇岛：12月下旬至次年2月</li>
+          <li>冰雪大世界：1月初至2月底</li>
+          <li>中国雪乡：12月中旬至次年3月</li>
+        </ul>
+      </div>
+      
+      <div data-aos="fade-up" data-aos-delay="100" class="guide-item">
+        <h3>交通指南</h3>
+        <p>吉林省内有长春龙嘉国际机场、延吉朝阳川国际机场等多个机场，高铁网络覆盖主要城市。各大景区都有专线巴士或旅游专线连接，交通便利。</p>
+        <p>主要交通方式：</p>
+        <ul style="margin-left: 20px; margin-top: 10px;">
+          <li>飞机：北京、上海、广州等主要城市均有直飞长春、延吉的航班</li>
+          <li>高铁：京哈高铁、哈大高铁可直达长春、吉林等城市</li>
+          <li>自驾：东北地区高速公路网络完善，自驾游便捷舒适</li>
+          <li>景区交通：各大景区均有旅游专线巴士，也可选择包车或拼车</li>
+        </ul>
+      </div>
+      
+      <div data-aos="fade-up" data-aos-delay="200" class="guide-item">
+        <h3>装备建议</h3>
+        <p>冬季吉林气温较低，建议携带保暖内衣、羽绒服、防风防水外套、保暖帽子、手套、围巾等。参加滑雪活动时，可在滑雪场租赁专业装备。</p>
+        <p>必备物品清单：</p>
+        <ul style="margin-left: 20px; margin-top: 10px;">
+          <li>衣物：保暖内衣、羽绒服、防风防水外套、保暖裤、厚袜子</li>
+          <li>配件：保暖帽子、手套、围巾、防滑雪地靴</li>
+          <li>护理：润唇膏、护手霜、防晒霜（雪地反光强烈）</li>
+          <li>其他：暖宝宝、保温杯、充电宝（低温环境电池消耗快）</li>
+        </ul>
+      </div>
+      
+      <div data-aos="fade-up" data-aos-delay="300" class="guide-item">
+        <h3>美食推荐</h3>
+        <p>东北冬季美食丰富多样，既能抵御严寒，又富有地方特色。以下是几款不容错过的东北冬季美食：</p>
+        <ul style="margin-left: 20px; margin-top: 10px;">
+          <li>东北铁锅炖：以猪肉、鸡肉为主料，配以土豆、白菜等蔬菜，炖制而成</li>
+          <li>酸菜白肉：东北特色菜，酸菜与五花肉的完美搭配</li>
+          <li>锅包肉：外酥里嫩，酸甜可口的东北名菜</li>
+          <li>冻梨、冻柿子：冬季特色水果，冰冻后口感独特</li>
+          <li>冰糖葫芦：东北冬季街头小吃，酸甜可口</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <footer>
+    <div class="footer-content">
+      <h3>冰雪丝路·创艺关东</h3>
+      <div class="footer-nav">
+        <a href="#home">首页</a>
+        <a href="#attractions">冰雪胜地</a>
+        <a href="#activities">互动体验</a>
+        <a href="#about">冰雪文化</a>
+        <a href="#integration">文化融合</a>
+        <a href="#travel-guide">旅游攻略</a>
+      </div>
+      <div class="social-links">
+        <span>© 2023-2024 吉林省第二届研究生"美丽中国"创新设计大赛参赛作品</span>
+        <span>霜宝™ - 东北冰雪文化IP形象</span>
+        <span>设计团队：吉林省研究生</span>
+      </div>
+      <div class="copyright">
+        版权所有 © 2023-2024 霜宝 | 冰雪丝路·创艺关东
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true
+  });
+
+  // 平滑滚动功能
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const section = document.querySelector(this.getAttribute('href'));
+      if (section) {
+        section.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+  
+
+  // 霜宝互动
+  const mascot = document.getElementById('mascot');
+  const speech = document.getElementById('speech');
+  const clickHint = document.getElementById('clickHint');
+  const greetings = [
+    '欢迎探索冰雪丝路文化！',
+    '创艺关东，邂逅冰雪奇缘~',
+    '让我带你领略东北冰雪文化的魅力！',
+    '冰雪文化与民俗、工业、生态的融合之旅即将开始！'
+  ];
+// 添加变量跟踪是否已点击
+let hasClicked = false;
+
+mascot.addEventListener('click', () => {
+  const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+  speech.textContent = randomGreeting;
+  speech.style.display = 'block';
+  
+  // 点击后隐藏"点我哦"提示
+  clickHint.style.display = 'none';
+  
+  setTimeout(() => {
+    speech.style.display = 'none';
+    
+    // 在问候语消失后3秒，重新显示"点我哦"提示
+    setTimeout(() => {
+      clickHint.style.display = 'block';
+    }, 3000);
+  }, 3000);
+});
+
+  // 景点卡片点击效果
+  document.querySelectorAll('.attraction-card').forEach(card => {
+    card.addEventListener('click', function() {
+      this.style.transform = 'scale(1.05)';
+      setTimeout(() => {
+        this.style.transform = 'translateY(-10px)';
+      }, 300);
+    });
+  });
+
+  // 互动功能区点击效果
+  document.querySelectorAll('.feature-box').forEach(box => {
+    box.addEventListener('click', function() {
+      this.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        this.style.transform = 'translateY(-5px)';
+        alert('功能即将上线，敬请期待！');
+      }, 200);
+    });
+  });
+
+  // 雪花效果
+  function createSnowflake() {
+    const snowflake = document.createElement('div');
+    snowflake.style.position = 'absolute';
+    snowflake.style.width = `${Math.random() * 10 + 5}px`;
+    snowflake.style.height = `${Math.random() * 10 + 5}px`;
+    snowflake.style.background = 'white';
+    snowflake.style.borderRadius = '50%';
+    snowflake.style.left = `${Math.random() * window.innerWidth}px`;
+    snowflake.style.opacity = `${Math.random()}`;
+    snowflake.style.animation = `fall ${Math.random() * 5 + 2}s linear infinite`;
+    snowflake.style.transform = `rotate(${Math.random() * 360}deg)`;
+    document.getElementById('snowflakes').appendChild(snowflake);
+
+    setTimeout(() => {
+      snowflake.remove();
+    }, 5000);
+  }
+
+  setInterval(createSnowflake, 100);
+
+  // 添加雪花动画样式
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+</script>
+</body>
+</html>
